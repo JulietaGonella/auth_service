@@ -1,0 +1,90 @@
+CREATE DATABASE IF NOT EXISTS sistema_eventos;
+USE sistema_eventos;
+
+-- Tabla roles
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- Tabla usuarios
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    rol_id INT NOT NULL,
+    totp_secret VARCHAR(255),
+    bio TEXT,                         -- Nueva columna: biografía
+    foto_url VARCHAR(255),           -- Nueva columna: URL de la foto de perfil
+    web_personal VARCHAR(255),       -- Nueva columna: sitio web personal
+    creado_en DATETIME DEFAULT CURRENT_TIMESTAMP,
+    actualizado_en DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (rol_id) REFERENCES roles(id)
+);
+
+-- Tabla eventos
+CREATE TABLE eventos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    ubicacion VARCHAR(150),
+    capacidad INT,
+    estado ENUM('planificacion', 'activo', 'finalizado', 'cancelado') DEFAULT 'planificacion',
+    creado_en DATETIME DEFAULT CURRENT_TIMESTAMP,
+    actualizado_en DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabla inscripciones
+CREATE TABLE inscripciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    evento_id INT NOT NULL,
+    tipo_inscripcion VARCHAR(50),
+    tarifa DECIMAL(10,2),
+    codigo_qr VARCHAR(255),
+    creado_en DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (evento_id) REFERENCES eventos(id)
+);
+
+-- Tabla actividades
+CREATE TABLE actividades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    evento_id INT NOT NULL,
+    titulo VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    expositor_id INT NOT NULL,
+    sala VARCHAR(50),
+    fecha DATE NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    estado ENUM('planificacion', 'activo', 'finalizado', 'cancelado') DEFAULT 'planificacion',
+    FOREIGN KEY (evento_id) REFERENCES eventos(id),
+    FOREIGN KEY (expositor_id) REFERENCES usuarios(id)
+);
+
+-- Tabla notificaciones
+CREATE TABLE notificaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    tipo VARCHAR(50),
+    mensaje TEXT,
+    enviado BOOLEAN DEFAULT FALSE,
+    fecha_envio DATETIME,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+-- Tabla organizadores_eventos
+CREATE TABLE organizadores_eventos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    evento_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (evento_id) REFERENCES eventos(id),
+    UNIQUE (usuario_id, evento_id) -- Evita duplicados
+);
+
+ALTER TABLE inscripciones MODIFY codigo_qr LONGTEXT;
