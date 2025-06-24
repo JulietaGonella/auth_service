@@ -1,0 +1,563 @@
+{
+	"info": {
+		"_postman_id": "3f007a61-0855-4c58-af43-5cf980316789",
+		"name": "TP2_Redes_Gonella_Julieta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26610340"
+	},
+	"item": [
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "http://localhost:3000/auth/register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"expositor167\",\r\n  \"email\": \"expositor167@gmail.com\",\r\n  \"password\": \"expositor4321\",\r\n  \"rol_id\": 3,\r\n  \"bio\": \"Ingeniera en sistemas especializada en IA y modelos predictivos.\",\r\n  \"foto_url\": \"https://i.imgur.com/ejemplo.jpg\",\r\n  \"web_personal\": \"https://mariagomez.dev\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/auth/login",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "julieta2001",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "julietagonella",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\": \"498121\"  // Código TOTP que genera la app autenticadora\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/eventos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJqdWxpZXRhZ29uZWxsYSIsInJvbF9pZCI6NCwiaWF0IjoxNzUwNjI4NjE3LCJleHAiOjE3NTA2Mjk1MTd9.75bcAKIHH2dAdG_18V2kdltuxfAgpFyXS4Qax-e5np8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Congreso Nacional de Tecnología\",\r\n  \"descripcion\": \"Un encuentro anual con charlas, paneles y talleres sobre innovación tecnológica.\",\r\n  \"fecha_inicio\": \"2025-06-24\",\r\n  \"fecha_fin\": \"2025-07-29\",\r\n  \"ubicacion\": \"Centro de Convenciones Buenos Aires\",\r\n  \"capacidad\": 800,\r\n  \"estado\": \"planificacion\"\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/eventos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"eventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/inscripciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJuYW1lIjoianVsaTAxZ29uZWxsYSIsInJvbF9pZCI6NSwiaWF0IjoxNzUwNjI5NDU2LCJleHAiOjE3NTA2MzAzNTZ9.xUjUUkp0wPrGBiDnxCjFogFPCfvnI6tuylv5s5ryPfY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"evento_id\": 5,\r\n  \"tipo_inscripcion\": \"general\",\r\n  \"tarifa\": 600.00\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/inscripciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"inscripciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/actividades",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJqdWxpZXRhZ29uZWxsYSIsInJvbF9pZCI6NCwiaWF0IjoxNzUwNTQxODU0LCJleHAiOjE3NTExNDY2NTR9.PrnEXMI68JyCh2itB_om6V1IVnS-KT5Cyi7b-xhSpvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"evento_id\": 5,\r\n  \"titulo\": \"Ciberseguridad y Privacidad en la Era Digital\",\r\n  \"descripcion\": \"Conferencia sobre desafíos actuales en protección de datos, vigilancia y regulación tecnológica.\",\r\n  \"expositor_id\": 14,\r\n  \"sala\": \"Sala B3\",\r\n  \"fecha\": \"2025-06-26\",\r\n  \"hora_inicio\": \"09:30:00\",\r\n  \"hora_fin\": \"11:00:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/actividades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"actividades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/eventos/4/organizador",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoib3JnYW5pemFkb3I5NTciLCJyb2xfaWQiOjIsImlhdCI6MTc1MDYyOTYwOSwiZXhwIjoxNzUwNjMwNTA5fQ.3fjTS31d5nNvQXjyzGR6HDH41qr7gclpwFV5aUB3v74",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"usuario_id\": 15\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/eventos/5/organizador",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"eventos",
+								"5",
+								"organizador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/inscripciones/admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJqdWxpZXRhZ29uZWxsYSIsInJvbF9pZCI6NCwiaWF0IjoxNzUwNzIwMTc5LCJleHAiOjE3NTA4MDY1Nzl9.th18o2j_c5qLwyXOohHzv8rwyFJRVtzwwKlzRID6qK0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"usuario_id\": 13,\r\n  \"evento_id\": 1,\r\n  \"tipo_inscripcion\": \"general\",\r\n  \"tarifa\": 500\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/inscripciones/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"inscripciones",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "http://localhost:3000/eventos/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJqdWxpZXRhZ29uZWxsYSIsInJvbF9pZCI6NCwiaWF0IjoxNzUwNTQxODU0LCJleHAiOjE3NTExNDY2NTR9.PrnEXMI68JyCh2itB_om6V1IVnS-KT5Cyi7b-xhSpvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Charla de IA\",\r\n  \"descripcion\": \"Actualizacion de evento\",\r\n  \"fecha_fin\": \"2025-06-27\",\r\n  \"estado\": \"activo\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/eventos/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"eventos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/actividades/2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoib3JnYW5pemFkb3I5NTciLCJyb2xfaWQiOjIsImlhdCI6MTc1MDYyOTYwOSwiZXhwIjoxNzUwNjMwNTA5fQ.3fjTS31d5nNvQXjyzGR6HDH41qr7gclpwFV5aUB3v74",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hora_inicio\": \"10:30:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/actividades/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"actividades",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "http://localhost:3000/eventos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/eventos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"eventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/inscripciones/mias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInVzZXJuYW1lIjoianVsaTAxZ29uZWxsYSIsInJvbF9pZCI6NSwiaWF0IjoxNzUwNTM5ODc1LCJleHAiOjE3NTA1NDA3NzV9.-obXRj0uJMZwASZjWq0eBsxc4xrSmiQTqLzFKRYThTQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/inscripciones/mias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"inscripciones",
+								"mias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/actividades",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoib3JnYW5pemFkb3I5NTciLCJyb2xfaWQiOjIsImlhdCI6MTc1MDYyOTYwOSwiZXhwIjoxNzUwNjMwNTA5fQ.3fjTS31d5nNvQXjyzGR6HDH41qr7gclpwFV5aUB3v74",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/actividades/evento/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"actividades",
+								"evento",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/expositores/16",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/expositores/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"expositores",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PATCH",
+			"item": [
+				{
+					"name": "http://localhost:3000/eventos/1/estado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoib3JnYW5pemFkb3I5NTciLCJyb2xfaWQiOjIsImlhdCI6MTc1MDYyOTYwOSwiZXhwIjoxNzUwNjMwNTA5fQ.3fjTS31d5nNvQXjyzGR6HDH41qr7gclpwFV5aUB3v74",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"estado\": \"activo\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/eventos/5/estado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"eventos",
+								"5",
+								"estado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/actividades/1/estado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoib3JnYW5pemFkb3I5NTciLCJyb2xfaWQiOjIsImlhdCI6MTc1MDYyOTYwOSwiZXhwIjoxNzUwNjMwNTA5fQ.3fjTS31d5nNvQXjyzGR6HDH41qr7gclpwFV5aUB3v74",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"estado\": \"cancelado\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/actividades/12/estado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"actividades",
+								"12",
+								"estado"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
